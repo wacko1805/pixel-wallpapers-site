@@ -1,0 +1,39 @@
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <main>
+        <div id="top"></div>
+              <header class="header">
+                <a href="../" class="logo">Pixel Wallpapers</a>
+                <input class="menu-btn" type="checkbox" id="menu-btn" />
+                <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                <ul class="menu">
+                  <li><a href="https://github.com/wacko1805/Pixel-Wallpaper-appss">Download the app</a></li>
+                  <li><a href="https://github.com/wacko1805/google-pixel-wallpapers">Wallpapers repository</a></li>
+                  <li><a href="https://github.com/wacko1805/pixel-wallpapers-site">source code</a></li>        
+                </ul>
+              </header>
+        </div>
+      </main>
+        <script>
+            $.getJSON( "https://pixel-wallpapers.herokuapp.com/", function( data )
+             {
+  var items = [];
+    $.each(data, function (key, val) {
+    items.push('<div class="image" id="' + key + '"><a class="lightbox" href="#' + val.name + '"><img src="' + val.url + '"></a><p> ' + val.name + '</p></div><div class="lightbox-target" id="' + val.name + '"><img alt="' + val.name + '" src="' + val.url + '"/><a href="' + val.url + '" download="' + val.name + '" title="' + val.name + '" class="btn">download</a><a class="lightbox-close" href="#"></a></div>');
+
+  });
+  
+  $( "<div/>", {
+    "class": "my-new-list",
+    html: items.join( "" )
+  }).appendTo( "main" );
+});
+        </script>
+        
+    </body>
+</html>
